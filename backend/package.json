@@ -2,10 +2,10 @@
   "name": "backend",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {
-    "generate": "cd prisma && npx prisma generate",
+"scripts": {
+    "postinstall": "npx prisma generate",
     "start": "node index.js",
-    "build": "npm run generate && npm run start"
+    "build": "npx prisma generate"
   },
   "keywords": [],
   "author": "",
