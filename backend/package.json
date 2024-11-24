@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
 "scripts": {
-    "postinstall": "npx prisma generate",
-    "start": "node index.js",
-    "build": "npx prisma generate"
+    "build": "node index.js"
   },
   "keywords": [],
   "author": "",
