@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const PORT = require("./config");
 const { PrismaClient } = require("@prisma/client");
 
 const app = express()
@@ -127,6 +128,7 @@ app.delete("/deleteReply/:replyId", async (req, res) => {
     
 });
 
-app.listen(3000, () => {
-    console.log("listening on port 3000");
+app.listen(PORT, () => {
+    console.log("listening on port");
+    console.log(PORT)
 }); 
