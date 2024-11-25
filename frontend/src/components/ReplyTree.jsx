@@ -19,13 +19,20 @@ const ReplyNode = ({ reply }) => {
 
     const handleReplySubmit = async () => {
         if (!newReply.trim()) return;
-        await fetch("https://og-assignment-be-rho.vercel.app/reply", {
+    
+        const response = await fetch("https://og-assignment-be-rho.vercel.app/reply", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ parentId: reply.id, content: newReply }),
+            body: JSON.stringify({ parentId: reply.id, content: newReply, postId: reply.postId }),
         });
-        setNewReply("");
-        setShowReplies(false); // Toggle back to refresh nested replies
+    
+        if (response.ok) {
+            const data = await response.json();
+            setNewReply("");
+            setShowReplies(false);
+            
+            reply.ChildReplies = reply.ChildReplies ? [...reply.ChildReplies, data.reply] : [data.reply];
+        }
     };
 
     return (

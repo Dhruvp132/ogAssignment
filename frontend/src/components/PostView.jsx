@@ -19,13 +19,21 @@ const PostView = () => {
 
     const handleReplySubmit = async () => {
         if (!newReply.trim()) return;
-        await fetch("https://og-assignment-be-rho.vercel.app/reply", {
+    
+        const response = await fetch("https://og-assignment-be-rho.vercel.app/reply", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ postId: post.postId, content: newReply }),
+            body: JSON.stringify({ postId: post.postId, content: newReply, parentId: null }),
         });
-        setNewReply("");
-        fetchPost();
+    
+        if (response.ok) {
+            const data = await response.json();
+            setPost((prevPost) => ({
+                ...prevPost,
+                Replies: [...prevPost.Replies, data.reply], 
+            }));
+            setNewReply("");
+        }
     };
 
     if (!post) return <p>Loading...</p>;
