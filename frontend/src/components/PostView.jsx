@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ReplyTree from "./ReplyTree";
 
@@ -12,14 +12,14 @@ const PostView = () => {
     }, [postId]);
 
     const fetchPost = async () => {
-        const response = await fetch(`http://localhost:3000/posts/${postId}`);
+        const response = await fetch(`https://og-assignment-be-rho.vercel.app/posts/${postId}`);
         const data = await response.json();
         setPost(data.post);
     };
 
     const handleReplySubmit = async () => {
         if (!newReply.trim()) return;
-        await fetch("http://localhost:3000/reply", {
+        await fetch("https://og-assignment-be-rho.vercel.app/reply", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ postId: post.postId, content: newReply }),

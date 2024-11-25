@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const Homepage = () => {
@@ -10,14 +10,14 @@ const Homepage = () => {
     }, []);
 
     const fetchPosts = async () => {
-        const response = await fetch("http://localhost:3000/posts");
+        const response = await fetch("https://og-assignment-be-rho.vercel.app/posts");
         const data = await response.json();
         setPosts(data.posts);
     };
 
     const handleCreatePost = async () => {
         if (!newPost.trim()) return;
-        await fetch("http://localhost:3000/createPost", {
+        await fetch("https://og-assignment-be-rho.vercel.app/createPost", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ Content: newPost }),

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+/* eslint-disable react/prop-types */
+import  { useState } from "react";
 
 const ReplyTree = ({ replies }) => {
     if (!replies || replies.length === 0) return <p>No replies yet.</p>;
@@ -18,7 +19,7 @@ const ReplyNode = ({ reply }) => {
 
     const handleReplySubmit = async () => {
         if (!newReply.trim()) return;
-        await fetch("http://localhost:3000/reply", {
+        await fetch("https://og-assignment-be-rho.vercel.app/reply", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ parentId: reply.id, content: newReply }),
